@@ -72,7 +72,11 @@ export function ContactSection() {
             Hemos recibido tu solicitud. Te responderemos en menos de 24 horas con tu presupuesto personalizado.
           </p>
           <button
-            onClick={() => setSubmitted(false)}
+            onClick={() => {
+              setSubmitted(false);
+              setErrors({});
+              setForm({ name: "", phone: "", email: "", services: [], frequency: "", message: "" });
+            }}
             className="text-gold font-semibold hover:underline"
           >
             ← Nueva solicitud
