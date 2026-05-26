@@ -10,9 +10,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Datos incompletos" }, { status: 400 });
   }
 
+  const from = process.env.RESEND_FROM ?? "ClarityCristal <onboarding@resend.dev>";
+  const to = process.env.RESEND_TO ?? "info@claritycristal.com";
+
   const { error } = await resend.emails.send({
-    from: "ClarityCristal <noreply@claritycristal.com>",
-    to: "info@claritycristal.com",
+    from,
+    to,
     replyTo: email || undefined,
     subject: `Nueva solicitud de presupuesto — ${name}`,
     html: `
@@ -54,6 +57,7 @@ export async function POST(req: Request) {
   });
 
   if (error) {
+    console.error("[contact] Resend error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
