@@ -1,15 +1,21 @@
+import Image from "next/image";
+
 export function Footer() {
   return (
-    <footer className="bg-volcanic text-white" role="contentinfo">
+    <footer className="bg-gradient-to-br from-[#002d4a] via-[#0a3d5c] to-[#001e38] text-white" role="contentinfo">
       <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gold flex items-center justify-center text-white font-display font-bold text-sm">
-                C
-              </div>
-              <span className="font-display text-xl font-bold">
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                src="/images/logo/logo.png"
+                alt="ClarityCristal"
+                width={140}
+                height={46}
+                className="h-11 w-auto object-contain brightness-0 invert"
+              />
+              <span className="font-bodoni text-xl font-semibold tracking-wide text-white leading-none">
                 Clarity<span className="text-gold">Cristal</span>
               </span>
             </div>
