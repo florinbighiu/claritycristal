@@ -26,9 +26,9 @@ export function HeroSection() {
             <Image
               src="/images/logo/logo.png"
               alt="ClarityCristal"
-              width={160}
-              height={52}
-              className="h-14 w-auto object-contain brightness-0 invert"
+              width={200}
+              height={66}
+              className="h-20 w-auto object-contain brightness-0 invert"
               priority
             />
             <span className="font-bodoni text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
