@@ -11,7 +11,6 @@ const SERVICE_LINKS = [
 ];
 
 const NAV_ANCHORS = [
-  { anchor: "inicio", label: "Portada" },
   { anchor: "metodo", label: "Método" },
   { anchor: "precios", label: "Precios" },
   { anchor: "faq", label: "FAQ" },
