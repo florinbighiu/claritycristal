@@ -47,9 +47,9 @@ export function NavBar() {
           <Image
             src="/images/logo/logo.png"
             alt="ClarityCristal"
-            width={120}
-            height={40}
-            className={`h-9 w-auto object-contain transition-all duration-300 group-hover:opacity-80 ${
+            width={160}
+            height={52}
+            className={`h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-80 ${
               scrolled ? "" : "brightness-0 invert"
             }`}
             priority
@@ -64,13 +64,13 @@ export function NavBar() {
               : "bg-white/5 border-white/20 backdrop-blur-sm shadow-md shadow-black/10"
           }`}
         >
-          <div className="flex items-center gap-0.5 px-6 h-14">
-            <nav aria-label="Navegación principal" className="flex items-center gap-0.5">
+          <div className="flex items-center gap-1 px-8 h-16">
+            <nav aria-label="Navegación principal" className="flex items-center gap-1">
               {navLinks.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
-                  className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-full text-base font-medium transition-colors ${
                     scrolled
                       ? "text-volcanic/70 hover:text-volcanic hover:bg-black/5"
                       : "text-white/80 hover:text-white hover:bg-white/10"
