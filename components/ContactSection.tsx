@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { WA_LINK } from "@/lib/data";
-import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const CONTACT_SERVICES = [
   "Limpieza de ventanas",
@@ -22,6 +20,7 @@ export function ContactSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -33,23 +32,24 @@ export function ContactSection() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
 
-    const msg = encodeURIComponent(
-      `Hola ClarityCristal,\n\n` +
-        `Nombre: ${form.name}\n` +
-        `Teléfono: ${form.phone || "—"}\n` +
-        `Email: ${form.email || "—"}\n` +
-        `Servicios: ${form.services.join(", ")}\n` +
-        `Frecuencia: ${form.frequency || "Por determinar"}\n` +
-        `Mensaje: ${form.message || "—"}\n\n` +
-        `Solicito presupuesto gratuito.`
-    );
-    window.open(`${WA_LINK}?text=${msg}`, "_blank", "noopener,noreferrer");
-    setSubmitted(true);
+    setSending(true);
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    setSending(false);
+
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      setErrors({ submit: "Error al enviar. Inténtalo de nuevo o contáctanos por WhatsApp." });
+    }
   };
 
   const toggleService = (s: string) => {
@@ -69,7 +69,7 @@ export function ContactSection() {
             ¡Solicitud enviada!
           </h2>
           <p className="text-volcanic/60 mb-6">
-            Te hemos redirigido a WhatsApp. Te responderemos en menos de 24 horas con tu presupuesto personalizado.
+            Hemos recibido tu solicitud. Te responderemos en menos de 24 horas con tu presupuesto personalizado.
           </p>
           <button
             onClick={() => setSubmitted(false)}
@@ -286,13 +286,32 @@ export function ContactSection() {
                 />
               </div>
 
+              {errors.submit && (
+                <p className="text-red-500 text-sm text-center" role="alert">{errors.submit}</p>
+              )}
+
               <button
                 type="submit"
-                className="btn-gold w-full flex items-center justify-center gap-2 text-white font-bold py-4 rounded-xl text-sm"
-                aria-label="Enviar solicitud de presupuesto por WhatsApp"
+                disabled={sending}
+                className="btn-gold w-full flex items-center justify-center gap-2 text-white font-bold py-4 rounded-xl text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                aria-label="Enviar solicitud de presupuesto"
               >
-                <WhatsAppIcon className="w-4 h-4" />
-                Enviar solicitud por WhatsApp
+                {sending ? (
+                  <>
+                    <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" aria-hidden="true">
+                      <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    Enviar solicitud
+                  </>
+                )}
               </button>
 
               <p className="text-center text-xs text-volcanic/40">
