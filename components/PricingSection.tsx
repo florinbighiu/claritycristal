@@ -13,42 +13,6 @@ export function PricingSection() {
       aria-labelledby="pricing-heading"
     >
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="text-center mb-16">
-          <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Precios transparentes
-          </p>
-          <h2
-            id="pricing-heading"
-            className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-volcanic"
-          >
-            Sin letra pequeña,{" "}
-            <span className="italic text-ocean">sin sorpresas</span>
-          </h2>
-          <p className="reveal reveal-delay-2 mt-4 text-volcanic/60 text-lg max-w-xl mx-auto">
-            Lo que ves es lo que pagas. Te informamos del precio exacto antes de empezar.
-          </p>
-        </div>
-
-        {/* Base rates */}
-        <div className="reveal reveal-delay-1 grid sm:grid-cols-3 gap-5 mb-20">
-          {[
-            { icon: "🏠", label: "Residencial", price: "4€", unit: "por ventana", note: "Todos los tamaños" },
-            { icon: "🏢", label: "Comercial", price: "3€", unit: "por m²", note: "Consultar para fachadas" },
-            { icon: "☀️", label: "Paneles Solares", price: "5€", unit: "por panel", note: "Hasta +30% rendimiento" },
-          ].map((r) => (
-            <div
-              key={r.label}
-              className="bg-white rounded-2xl p-6 border border-smoke text-center flex flex-col items-center gap-2 hover:shadow-lg transition-shadow"
-            >
-              <span className="text-3xl" aria-hidden="true">{r.icon}</span>
-              <p className="text-xs font-semibold uppercase tracking-widest text-ocean">{r.label}</p>
-              <div className="font-display text-4xl font-bold text-volcanic">{r.price}</div>
-              <p className="text-sm text-volcanic/50">{r.unit}</p>
-              <p className="text-xs text-volcanic/40 bg-smoke rounded-full px-3 py-1">{r.note}</p>
-            </div>
-          ))}
-        </div>
-
         {/* Recurring plans */}
         <div className="text-center mb-10">
           <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
