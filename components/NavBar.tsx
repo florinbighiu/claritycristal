@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { WA_LINK, WA_MSG } from "@/lib/data";
-import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const NAV_ANCHORS = [
   { anchor: "servicios", label: "Servicios" },
@@ -82,16 +80,6 @@ export function NavBar() {
                 </a>
               ))}
             </nav>
-            <a
-              href={`${WA_LINK}?text=${WA_MSG}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-3 btn-gold text-white font-semibold text-xs px-4 py-2 rounded-full flex items-center gap-1.5 shadow-md"
-              aria-label="Solicitar presupuesto gratuito por WhatsApp"
-            >
-              <WhatsAppIcon className="w-3.5 h-3.5" />
-              Presupuesto gratis
-            </a>
           </div>
         </div>
 
@@ -139,15 +127,6 @@ export function NavBar() {
               {l.label}
             </a>
           ))}
-          <a
-            href={`${WA_LINK}?text=${WA_MSG}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setOpen(false)}
-            className="mt-1 btn-gold text-white font-semibold text-sm px-5 py-2.5 rounded-full text-center"
-          >
-            Solicitar presupuesto gratis
-          </a>
         </nav>
       </div>
     </header>
