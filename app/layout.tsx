@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit } from "next/font/google";
+import { Fraunces, Outfit, Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -11,6 +11,13 @@ const fraunces = Fraunces({
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",
+  display: "swap",
+});
+
+const bodoni = Bodoni_Moda({
+  subsets: ["latin"],
+  variable: "--font-bodoni",
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
@@ -169,7 +176,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${fraunces.variable} ${outfit.variable}`}>
+    <html lang="es" className={`${fraunces.variable} ${outfit.variable} ${bodoni.variable}`}>
       <head>
         <script
           type="application/ld+json"

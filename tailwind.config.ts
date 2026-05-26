@@ -20,6 +20,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
         body: ["var(--font-outfit)", "system-ui", "sans-serif"],
+        bodoni: ["var(--font-bodoni)", "Georgia", "serif"],
       },
       animation: {
         "fade-up": "fadeUp 0.7s ease forwards",

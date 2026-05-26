@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { WA_LINK, WA_MSG } from "@/lib/data";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
@@ -20,6 +21,20 @@ export function HeroSection() {
 
       <div className="relative z-10 w-full px-5 lg:px-16">
         <div className="flex flex-col items-center justify-center min-h-screen py-32 text-center w-full">
+
+          <div className="flex items-center gap-3 mb-10">
+            <Image
+              src="/images/logo/logo.png"
+              alt="ClarityCristal"
+              width={160}
+              height={52}
+              className="h-14 w-auto object-contain brightness-0 invert"
+              priority
+            />
+            <span className="font-bodoni text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
+              Clarity<span className="text-teal-300">Cristal</span>
+            </span>
+          </div>
 
           <div className="flex items-center gap-3 mb-8">
             <span className="block w-8 h-px bg-teal-400/60" />

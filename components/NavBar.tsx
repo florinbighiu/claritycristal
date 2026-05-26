@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
 
 const NAV_ANCHORS = [
+  { anchor: "inicio", label: "Portada" },
   { anchor: "servicios", label: "Servicios" },
   { anchor: "metodo", label: "Método" },
   { anchor: "precios", label: "Precios" },
@@ -37,24 +36,6 @@ export function NavBar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 pt-4" role="banner">
       <div className="relative flex items-center justify-center px-5 h-10 lg:h-auto">
-
-        {/* Logo — always visible, anchored top-left outside the pill */}
-        <Link
-          href={isHome ? "#" : "/"}
-          className="absolute left-5 top-0 flex items-center group"
-          aria-label="ClarityCristal - volver al inicio"
-        >
-          <Image
-            src="/images/logo/logo.png"
-            alt="ClarityCristal"
-            width={160}
-            height={52}
-            className={`h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-80 ${
-              scrolled ? "" : "brightness-0 invert"
-            }`}
-            priority
-          />
-        </Link>
 
         {/* Desktop pill — centered */}
         <div
