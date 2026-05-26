@@ -1,0 +1,156 @@
+"use client";
+
+import { useRef, useState, useCallback, useEffect } from "react";
+import Image from "next/image";
+
+export function BeforeAfterSlider() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [pos, setPos] = useState(50);
+  const dragging = useRef(false);
+
+  const handleMove = useCallback((clientX: number) => {
+    if (!containerRef.current || !dragging.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const pct = Math.min(100, Math.max(0, ((clientX - rect.left) / rect.width) * 100));
+    setPos(pct);
+  }, []);
+
+  useEffect(() => {
+    const onMouseMove = (e: MouseEvent) => handleMove(e.clientX);
+    const onTouchMove = (e: TouchEvent) => handleMove(e.touches[0].clientX);
+    const onUp = () => { dragging.current = false; };
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchend", onUp);
+    };
+  }, [handleMove]);
+
+  return (
+    <section
+      id="metodo"
+      className="py-24 lg:py-32 bg-pearl"
+      aria-labelledby="method-heading"
+    >
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Text */}
+          <div>
+            <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
+              Nuestro método exclusivo
+            </p>
+            <h2
+              id="method-heading"
+              className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-volcanic mb-6"
+            >
+              El secreto:{" "}
+              <span className="italic text-ocean">agua sin cal</span>
+            </h2>
+            <p className="reveal reveal-delay-2 text-volcanic/60 text-lg mb-8 leading-relaxed">
+              El agua del grifo tiene entre 100-500 ppm de minerales que dejan marcas al
+              secarse. Nuestra agua ultrapura a <strong>0 ppm</strong> solo contiene H₂O, sin
+              residuos que se depositen en el cristal.
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+              {[
+                { stat: "0 ppm", label: "Pureza del agua" },
+                { stat: "30%", label: "Más rápido" },
+                { stat: "50%", label: "Brillo más duradero" },
+                { stat: "0€", label: "Sin desplazamiento" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="reveal reveal-delay-2 bg-white rounded-xl p-5 border border-smoke text-center"
+                >
+                  <div className="font-display text-3xl font-bold text-gold">{s.stat}</div>
+                  <div className="text-xs text-volcanic/50 mt-1 font-medium uppercase tracking-wide">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="reveal reveal-delay-3 space-y-3">
+              {[
+                { icon: "💧", text: "Sin rayas ni manchas — no hay que secar manualmente" },
+                { icon: "🌿", text: "Sin químicos agresivos — respetuoso con el medio ambiente" },
+                { icon: "🔭", text: "Pértigas telescópicas — se limpia desde el suelo con total seguridad" },
+                { icon: "⚡", text: "Hasta +30% de rendimiento en paneles fotovoltaicos" },
+              ].map((f) => (
+                <div key={f.text} className="flex items-start gap-3 text-sm text-volcanic/70">
+                  <span className="shrink-0 text-base" aria-hidden="true">{f.icon}</span>
+                  {f.text}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Interactive slider */}
+          <div className="reveal reveal-delay-2">
+            <div
+              ref={containerRef}
+              className="before-after-slider h-80 lg:h-[420px] select-none"
+              role="img"
+              aria-label="Comparación antes y después de la limpieza: arrastre el divisor para comparar"
+              onMouseDown={() => { dragging.current = true; }}
+              onTouchStart={() => { dragging.current = true; }}
+            >
+              {/* After — base layer (always visible underneath) */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <Image
+                  src="/images/slider/after.png"
+                  alt="Después de la limpieza"
+                  fill
+                  className="object-cover"
+                  draggable={false}
+                />
+                <div className="absolute bottom-4 right-4">
+                  <div className="bg-white/60 text-volcanic text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    DESPUÉS
+                  </div>
+                </div>
+              </div>
+
+              {/* Before — clipped top layer (reveals left side) */}
+              <div
+                className="after-layer rounded-2xl overflow-hidden"
+                style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+              >
+                <Image
+                  src="/images/slider/before.png"
+                  alt="Antes de la limpieza"
+                  fill
+                  className="object-cover"
+                  draggable={false}
+                />
+                <div className="absolute bottom-4 left-4">
+                  <div className="bg-black/50 text-white text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    ANTES
+                  </div>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="divider" style={{ left: `${pos}%` }} aria-hidden="true">
+                <div className="divider-handle">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-volcanic" aria-hidden="true">
+                    <path d="M8 9l-4 3 4 3M16 9l4 3-4 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            <p className="text-center text-sm text-volcanic/40 mt-3">
+              Arrastra el divisor para comparar →
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
