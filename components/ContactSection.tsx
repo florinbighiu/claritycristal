@@ -20,6 +20,7 @@ export function ContactSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const [formKey, setFormKey] = useState(0);
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -76,6 +77,7 @@ export function ContactSection() {
               setSubmitted(false);
               setErrors({});
               setForm({ name: "", phone: "", email: "", services: [], frequency: "", message: "" });
+              setFormKey((k) => k + 1);
             }}
             className="text-gold font-semibold hover:underline"
           >
@@ -88,6 +90,7 @@ export function ContactSection() {
 
   return (
     <section
+      key={formKey}
       id="contacto"
       className="py-24 lg:py-32 bg-white"
       aria-labelledby="contact-heading"
