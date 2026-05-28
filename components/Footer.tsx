@@ -136,6 +136,10 @@ export function Footer() {
           <p className="text-white/30 text-xs">
             © 2026 ClarityCristal. Todos los derechos reservados.
           </p>
+          <p className="text-white/30 text-xs">
+            Diseñado y desarrollado por - {" "}
+            <a href="https://florinbighiu.dev" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-gold transition-colors">Florin Bighiu</a>
+          </p>
           <nav aria-label="Legal" className="flex gap-5">
             {[
               { label: "Aviso Legal", href: "/aviso-legal" },
