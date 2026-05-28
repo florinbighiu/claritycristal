@@ -24,11 +24,27 @@ export function ContactSection() {
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const PHONE_REGEX = /^(\+34)?[6789]\d{8}$/;
+  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "El nombre es obligatorio";
-    if (!form.phone.trim() && !form.email.trim())
+
+    const phoneEmpty = !form.phone.trim();
+    const emailEmpty = !form.email.trim();
+
+    if (phoneEmpty && emailEmpty) {
       e.contact = "Introduce un teléfono o email de contacto";
+    } else {
+      if (!phoneEmpty && !PHONE_REGEX.test(form.phone.replace(/[\s\-()+]/g, "").replace(/^0034/, ""))) {
+        e.phone = "Teléfono no válido (ej: 600 000 000 o +34 600 000 000)";
+      }
+      if (!emailEmpty && !EMAIL_REGEX.test(form.email.trim())) {
+        e.email = "Introduce un email válido (ej: tu@email.com)";
+      }
+    }
+
     if (form.services.length === 0) e.services = "Selecciona al menos un servicio";
     return e;
   };
@@ -183,7 +199,10 @@ export function ContactSection() {
                   type="text"
                   autoComplete="name"
                   value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  onChange={(e) => {
+                    setForm({ ...form, name: e.target.value });
+                    setErrors((prev) => { const { name: _, ...rest } = prev; return rest; });
+                  }}
                   className={`w-full rounded-xl border px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition ${errors.name ? "border-red-400" : "border-smoke"}`}
                   placeholder="Tu nombre completo"
                   aria-required="true"
@@ -203,10 +222,16 @@ export function ContactSection() {
                     type="tel"
                     autoComplete="tel"
                     value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full rounded-xl border border-smoke px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition"
+                    onChange={(e) => {
+                      setForm({ ...form, phone: e.target.value });
+                      setErrors((prev) => { const { phone: _, contact: __, ...rest } = prev; return rest; });
+                    }}
+                    className={`w-full rounded-xl border px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition ${errors.phone || errors.contact ? "border-red-400" : "border-smoke"}`}
                     placeholder="+34 600 000 000"
+                    aria-invalid={!!errors.phone}
+                    aria-describedby={errors.phone ? "phone-error" : undefined}
                   />
+                  {errors.phone && <p id="phone-error" className="text-red-500 text-xs mt-1" role="alert">{errors.phone}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-email" className="block text-sm font-semibold text-volcanic mb-1.5">
@@ -217,10 +242,16 @@ export function ContactSection() {
                     type="email"
                     autoComplete="email"
                     value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full rounded-xl border border-smoke px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition"
+                    onChange={(e) => {
+                      setForm({ ...form, email: e.target.value });
+                      setErrors((prev) => { const { email: _, contact: __, ...rest } = prev; return rest; });
+                    }}
+                    className={`w-full rounded-xl border px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition ${errors.email || errors.contact ? "border-red-400" : "border-smoke"}`}
                     placeholder="tu@email.com"
+                    aria-invalid={!!errors.email}
+                    aria-describedby={errors.email ? "email-error" : undefined}
                   />
+                  {errors.email && <p id="email-error" className="text-red-500 text-xs mt-1" role="alert">{errors.email}</p>}
                 </div>
               </div>
               {errors.contact && <p className="text-red-500 text-xs -mt-3" role="alert">{errors.contact}</p>}
