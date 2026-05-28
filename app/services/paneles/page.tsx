@@ -50,24 +50,6 @@ export default function PanelesPage() {
         </div>
       </section>
 
-      {/* Pricing callout */}
-      <section className="py-10 bg-gold">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-white">
-            <span className="font-display text-3xl font-bold">Desde 5€</span>
-            <span className="text-white/80 ml-2 text-lg">por panel · Recupera cientos de € al año en energía</span>
-          </div>
-          <a
-            href={`${WA_LINK}?text=${WA_MSG_PANELES}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-gold font-bold px-6 py-3 rounded-full hover:bg-white/90 transition-colors whitespace-nowrap"
-          >
-            Solicitar presupuesto →
-          </a>
-        </div>
-      </section>
-
       {/* The problem in Lanzarote */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -167,7 +149,7 @@ export default function PanelesPage() {
                     { icon: "🚫", text: "Sin productos químicos — no daña el recubrimiento antireflectante" },
                     { icon: "🛡️", text: "Seguro de responsabilidad civil incluido" },
                     { icon: "✅", text: "Apto para todos los fabricantes (Solaria, Canadian, Longi, etc.)" },
-                    { icon: "🌧️", text: "Garantía de lluvia: si llueve en 3 días, volvemos gratis" },
+                    { icon: "🌧️", text: "Lluvia posterior: si llueve en 3 días, la repetición tiene un coste adicional" },
                   ].map((f) => (
                     <div key={f.text} className="flex items-start gap-3 text-sm text-volcanic/70">
                       <span className="shrink-0 text-base" aria-hidden="true">{f.icon}</span>

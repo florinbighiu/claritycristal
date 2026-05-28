@@ -92,7 +92,7 @@ export function NavBar() {
 
                 {/* Dropdown panel */}
                 <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-xl transition-all duration-200 overflow-hidden ${
+                  className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl bg-white border border-smoke shadow-xl transition-all duration-200 overflow-hidden ${
                     servicesOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                   }`}
                 >

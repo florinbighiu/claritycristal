@@ -68,7 +68,7 @@ export default function TerminosCondicionesPage() {
             <p>Tarifas orientativas:</p>
             <ul className="list-disc list-inside space-y-1 mt-2">
               <li>Ventanas residenciales: desde <strong className="text-volcanic">4 € por ventana</strong>.</li>
-              <li>Superficie comercial: desde <strong className="text-volcanic">3 € por m²</strong>.</li>
+              <li>Superficie comercial: precio a <strong className="text-volcanic">consultar según superficie</strong>.</li>
               <li>Paneles solares: desde <strong className="text-volcanic">5 € por panel</strong>.</li>
               <li>Desplazamiento: <strong className="text-volcanic">gratuito</strong> en toda la isla de Lanzarote.</li>
             </ul>
@@ -98,7 +98,7 @@ export default function TerminosCondicionesPage() {
             <ul className="list-disc list-inside space-y-1 mt-3">
               <li><strong className="text-volcanic">Repetición del servicio:</strong> si el cliente no queda satisfecho con la calidad de la limpieza, ClarityCristal repetirá las zonas deficientes sin coste adicional, siempre que la incidencia sea imputable a ClarityCristal.</li>
               <li><strong className="text-volcanic">Plazo de notificación:</strong> el cliente dispone de <strong>24 horas</strong> desde la finalización del servicio para comunicar cualquier incidencia a través de correo electrónico o WhatsApp, describiendo las zonas afectadas. ClarityCristal responderá en un plazo máximo de 72 horas.</li>
-              <li><strong className="text-volcanic">Garantía de lluvia:</strong> si llueve en los días siguientes a la prestación del servicio en el plazo acordado (3, 5 o 7 días según el plan contratado), ClarityCristal repetirá el servicio sin coste.</li>
+              <li><strong className="text-volcanic">Lluvia posterior al servicio:</strong> si llueve en los días siguientes a la prestación del servicio en el plazo acordado (3, 5 o 7 días según el plan contratado), ClarityCristal podrá repetir el servicio con un coste adicional.</li>
             </ul>
             <p>La garantía no cubre:</p>
             <ul className="list-disc list-inside space-y-1 mt-2">

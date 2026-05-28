@@ -50,24 +50,6 @@ export default function EmpresasPage() {
         </div>
       </section>
 
-      {/* Pricing callout */}
-      <section className="py-10 bg-gold">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-white">
-            <span className="font-display text-3xl font-bold">Desde 3€</span>
-            <span className="text-white/80 ml-2 text-lg">por m² · Factura y seguro incluidos</span>
-          </div>
-          <a
-            href={`${WA_LINK}?text=${WA_MSG_EMPRESAS}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-gold font-bold px-6 py-3 rounded-full hover:bg-white/90 transition-colors whitespace-nowrap"
-          >
-            Solicitar presupuesto →
-          </a>
-        </div>
-      </section>
-
       {/* Types of businesses */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -135,7 +117,7 @@ export default function EmpresasPage() {
 
             <div className="grid grid-cols-2 gap-4">
               {[
-                { stat: "3€", label: "Desde / m²" },
+                { stat: "—", label: "Consultar / m²" },
                 { stat: "0€", label: "Desplazamiento" },
                 { stat: "24h", label: "Respuesta" },
                 { stat: "100%", label: "Garantizado" },
@@ -164,8 +146,8 @@ export default function EmpresasPage() {
 
           <div className="grid sm:grid-cols-3 gap-6 mb-12">
             {[
-              { type: "Escaparates", price: "3€", note: "por m² de superficie" },
-              { type: "Cristaleras", price: "3.5€", note: "por m² incluye marco" },
+              { type: "Escaparates", price: "Consultar", note: "por m² de superficie" },
+              { type: "Cristaleras", price: "Consultar", note: "por m² incluye marco" },
               { type: "Fachadas completas", price: "Presupuesto", note: "según dimensiones" },
             ].map((p) => (
               <div key={p.type} className="bg-pearl border border-smoke rounded-2xl p-6">

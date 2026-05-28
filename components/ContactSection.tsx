@@ -136,17 +136,6 @@ export function ContactSection() {
                   value: "info@claritycristal.com",
                   href: "mailto:info@claritycristal.com",
                 },
-                {
-                  icon: (
-                    <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" aria-hidden="true">
-                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                  ),
-                  label: "Dirección",
-                  value: "Calle Puerto Rico nº 36, Arrecife, Las Palmas",
-                  href: "https://maps.google.com/?q=Arrecife+Lanzarote",
-                },
               ].map((c) => (
                 <a
                   key={c.label}
@@ -289,7 +278,7 @@ export function ContactSection() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full rounded-xl border border-smoke px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition resize-none"
-                  placeholder="Cuéntanos más sobre tu propiedad, número de ventanas, ubicación..."
+                  placeholder="Cuéntanos más sobre tu propiedad, número de ventanas..."
                 />
               </div>
 

@@ -17,8 +17,9 @@ const outfit = Outfit({
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   variable: "--font-bodoni",
-  weight: ["400", "600", "700"],
+  weight: ["600"],
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -166,7 +167,7 @@ const jsonLd = {
           name: "¿Cuánto cuesta la limpieza de cristales en Lanzarote?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "La limpieza de cristales residencial parte de 4€ por ventana. La limpieza comercial desde 3€/m². Los paneles solares desde 5€ por panel. El desplazamiento es siempre gratuito.",
+            text: "La limpieza de cristales residencial parte de 4€ por ventana. La limpieza comercial con precio a consultar según superficie. Los paneles solares desde 5€ por panel. El desplazamiento es siempre gratuito.",
           },
         },
       ],

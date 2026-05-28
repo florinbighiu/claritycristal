@@ -50,24 +50,6 @@ export default function ResidencialPage() {
         </div>
       </section>
 
-      {/* Pricing callout */}
-      <section className="py-10 bg-gold">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-white">
-            <span className="font-display text-3xl font-bold">Desde 4€</span>
-            <span className="text-white/80 ml-2 text-lg">por ventana · Desplazamiento gratuito</span>
-          </div>
-          <a
-            href={`${WA_LINK}?text=${WA_MSG_RESIDENCIAL}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white text-gold font-bold px-6 py-3 rounded-full hover:bg-white/90 transition-colors whitespace-nowrap"
-          >
-            Solicitar presupuesto →
-          </a>
-        </div>
-      </section>
-
       {/* What we clean */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -121,7 +103,7 @@ export default function ResidencialPage() {
                   { icon: "🔭", text: "Pértigas telescópicas — limpieza desde el suelo, sin escaleras" },
                   { icon: "🛡️", text: "Seguro de responsabilidad civil incluido" },
                   { icon: "⏰", text: "No necesitas estar en casa — solo acceso al exterior" },
-                  { icon: "🌧️", text: "Garantía de lluvia: si llueve en 3 días, volvemos gratis" },
+                  { icon: "🌧️", text: "Lluvia posterior: si llueve en 3 días, la repetición tiene un coste adicional" },
                 ].map((f) => (
                   <div key={f.text} className="flex items-start gap-3 text-sm text-volcanic/70">
                     <span className="shrink-0 text-base" aria-hidden="true">{f.icon}</span>
@@ -213,7 +195,7 @@ export default function ResidencialPage() {
               { q: "¿Necesito estar en casa?", a: "No. Solo necesitamos acceso al exterior de la vivienda. Te avisamos cuando llegamos y cuando terminamos." },
               { q: "¿Cuánto tiempo tarda la limpieza?", a: "Depende del número de ventanas. Una vivienda media con 10-15 ventanas lleva entre 1 y 2 horas." },
               { q: "¿Limpiáis también por dentro?", a: "Sí. Limpiamos interior y exterior. Solo necesitamos acceso a las habitaciones." },
-              { q: "¿Qué pasa si llueve después de la limpieza?", a: "Aplicamos nuestra garantía de lluvia: si llueve en los 3 días posteriores, volvemos sin coste adicional." },
+              { q: "¿Qué pasa si llueve después de la limpieza?", a: "Si llueve en los 3 días posteriores al servicio, podemos volver para repetir la limpieza. Ten en cuenta que esta repetición tendrá un coste adicional." },
             ].map((item) => (
               <details key={item.q} className="bg-white border border-smoke rounded-2xl overflow-hidden group">
                 <summary className="px-6 py-5 font-semibold text-volcanic cursor-pointer hover:text-ocean transition-colors list-none flex items-center justify-between">

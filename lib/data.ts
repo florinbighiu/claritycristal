@@ -117,7 +117,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "¿Cuánto cuesta la limpieza de cristales o paneles solares?",
-    a: "Residencial: desde 4€ por ventana. Comercial: desde 3€/m². Paneles solares: desde 5€ por panel. El desplazamiento es siempre gratuito. Solicita tu presupuesto sin compromiso.",
+    a: "Residencial: desde 4€ por ventana. Comercial: precio a consultar según superficie. Paneles solares: desde 5€ por panel. El desplazamiento es siempre gratuito. Solicita tu presupuesto sin compromiso.",
   },
 ];
 
@@ -199,7 +199,7 @@ export const SERVICES: Service[] = [
     title: "Empresas & Alojamientos",
     subtitle: "Hoteles, oficinas, comercios",
     desc: "Servicio adaptado a negocios sin interrumpir tu actividad. Escaparates impecables, fachadas cristalinas y clientes impresionados.",
-    price: "Desde 3€ / m²",
+    price: "Consultar",
     slug: "empresas",
     items: [
       "Escaparates y locales",
