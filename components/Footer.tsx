@@ -11,9 +11,9 @@ export function Footer() {
               <Image
                 src="/images/logo/logo.png"
                 alt="ClarityCristal"
-                width={140}
-                height={46}
-                className="h-11 w-auto object-contain brightness-0 invert"
+                width={200}
+                height={66}
+                className="h-16 w-auto object-contain brightness-0 invert"
               />
               <span className="font-serif text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
                 Clarity<span className="text-gold">Cristal</span>

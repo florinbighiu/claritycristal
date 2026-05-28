@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { WA_LINK, WA_MSG, SERVICES } from "@/lib/data";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 export function ServicesSection() {
   const router = useRouter();
@@ -122,6 +123,8 @@ export function ServicesSection() {
           ))}
         </div>
       </div>
+
+      <ReviewsSection />
     </section>
   );
 }

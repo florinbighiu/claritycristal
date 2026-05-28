@@ -145,6 +145,10 @@ header.scrolled {
   box-shadow: 0 0 0 2px var(--gold), 0 20px 60px rgba(232, 160, 0, 0.15);
 }
 
+/* Hide scrollbar for carousel */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* Step connector line */
 .step-connector::after {
   content: "";
