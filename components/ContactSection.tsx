@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { pushEvent } from "@/lib/gtm";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -80,6 +81,7 @@ export function ContactSection() {
 
     if (res.ok) {
       setSubmitted(true);
+      pushEvent("form_submit_contact");
     } else {
       setErrors({ submit: "Error al enviar. Inténtalo de nuevo o contáctanos por WhatsApp." });
     }
@@ -153,6 +155,7 @@ export function ContactSection() {
                   href={c.href}
                   target={c.href.startsWith("http") ? "_blank" : undefined}
                   rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={() => pushEvent(c.href.startsWith("tel:") ? "click_phone" : "click_email", { location: "contact" })}
                   className="flex items-start gap-4 p-4 rounded-xl hover:bg-pearl transition-colors group"
                   aria-label={`${c.label}: ${c.value}`}
                 >

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { WA_LINK, WA_MSG, SERVICES } from "@/lib/data";
+import { pushEvent } from "@/lib/gtm";
 import { ReviewsSection } from "@/components/ReviewsSection";
 
 export function ServicesSection() {
@@ -108,7 +109,7 @@ export function ServicesSection() {
                   href={`${WA_LINK}?text=${WA_MSG}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => { e.stopPropagation(); pushEvent("click_whatsapp", { location: "services", service: s.title }); }}
                   className={`relative z-20 text-sm font-semibold px-5 py-2.5 rounded-full transition-all ${
                     s.highlight
                       ? "btn-gold text-white"

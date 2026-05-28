@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { WA_LINK, WA_MSG } from "@/lib/data";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { pushEvent } from "@/lib/gtm";
 
 export function HeroSection() {
   return (
@@ -67,6 +68,7 @@ export function HeroSection() {
               rel="noopener noreferrer"
               className="btn-gold flex items-center gap-3 text-white font-bold px-8 py-4 rounded-full text-base shadow-2xl"
               aria-label="Solicitar presupuesto gratuito por WhatsApp"
+              onClick={() => pushEvent("click_whatsapp", { location: "hero" })}
             >
               <WhatsAppIcon className="w-5 h-5" />
               Presupuesto gratis

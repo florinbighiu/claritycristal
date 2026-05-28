@@ -1,4 +1,7 @@
+"use client";
+
 import { WA_LINK } from "@/lib/data";
+import { pushEvent } from "@/lib/gtm";
 
 const packs = [
   {
@@ -69,6 +72,7 @@ export function PacksSection() {
                 href={`${WA_LINK}?text=${encodeURIComponent(`Hola, quiero reservar el ${p.name} (${p.price}€).`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => pushEvent("click_whatsapp", { location: "packs", pack: p.name })}
                 className={`mt-auto text-center text-sm font-semibold px-5 py-3 rounded-full transition-all ${
                   p.badge ? "btn-gold text-white" : "bg-volcanic text-white hover:bg-navy"
                 }`}

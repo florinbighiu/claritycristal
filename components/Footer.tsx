@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { pushEvent } from "@/lib/gtm";
 
 export function Footer() {
   return (
@@ -65,12 +68,12 @@ export function Footer() {
             </h3>
             <ul className="space-y-2">
               <li>
-                <a href="tel:+34604234496" className="text-white/50 hover:text-gold text-sm transition-colors">
+                <a href="tel:+34604234496" onClick={() => pushEvent("click_phone", { location: "footer" })} className="text-white/50 hover:text-gold text-sm transition-colors">
                   +34 604 234 496
                 </a>
               </li>
               <li>
-                <a href="mailto:info@claritycristal.com" className="text-white/50 hover:text-gold text-sm transition-colors">
+                <a href="mailto:info@claritycristal.com" onClick={() => pushEvent("click_email", { location: "footer" })} className="text-white/50 hover:text-gold text-sm transition-colors">
                   info@claritycristal.com
                 </a>
               </li>

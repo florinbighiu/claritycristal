@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { PLANS, WA_LINK, type PlanKey } from "@/lib/data";
+import { pushEvent } from "@/lib/gtm";
 
 export function PricingSection() {
   const [, setActivePlan] = useState<PlanKey>("plus");
@@ -76,6 +77,7 @@ export function PricingSection() {
                   href={`${WA_LINK}?text=${encodeURIComponent(`Hola, me interesa el plan ${plan.name} (${plan.sessions} sesiones / año, -${plan.discount}%).`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => pushEvent("click_whatsapp", { location: "pricing", plan: plan.name })}
                   className={`block text-center text-sm font-semibold px-5 py-3 rounded-full transition-all w-full ${
                     plan.popular
                       ? "btn-gold text-white"
