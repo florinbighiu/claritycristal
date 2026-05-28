@@ -8,7 +8,7 @@ export async function GET() {
     return NextResponse.json({ error: "Missing configuration" }, { status: 500 });
   }
 
-  const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}`, {
+  const res = await fetch(`https://places.googleapis.com/v1/places/${placeId}?languageCode=es`, {
     headers: {
       "X-Goog-Api-Key": apiKey,
       "X-Goog-FieldMask": "displayName,rating,userRatingCount,reviews",
