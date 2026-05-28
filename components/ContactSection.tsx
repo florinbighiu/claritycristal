@@ -8,8 +8,16 @@ function formatPhone(value: string): string {
   const hasPlus = value.trimStart().startsWith("+");
   const digits = value.replace(/\D/g, "");
   if (!digits) return hasPlus ? "+" : "";
+
+  if (hasPlus) {
+    const countryCode = digits.slice(0, 2);
+    const rest = digits.slice(2);
+    const groups = rest.match(/\d{1,3}/g) ?? [];
+    return "+" + countryCode + (groups.length ? " " + groups.join(" ") : "");
+  }
+
   const groups = digits.match(/\d{1,3}/g) ?? [];
-  return (hasPlus ? "+" : "") + groups.join(" ");
+  return groups.join(" ");
 }
 
 const CONTACT_SERVICES = [
