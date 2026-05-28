@@ -93,36 +93,15 @@ export function ContactSection() {
     setErrors((e) => { const { services: _, ...rest } = e; return rest; });
   };
 
-  if (submitted) {
-    return (
-      <section id="contacto" className="py-24 lg:py-32 bg-white">
-        <div className="max-w-lg mx-auto px-5 text-center">
-          <div className="text-6xl mb-4">✅</div>
-          <h2 className="font-display text-3xl font-bold text-volcanic mb-3">
-            ¡Solicitud enviada!
-          </h2>
-          <p className="text-volcanic/60 mb-6">
-            Hemos recibido tu solicitud. Te responderemos en menos de 24 horas con tu presupuesto personalizado.
-          </p>
-          <button
-            onClick={() => {
-              setSubmitted(false);
-              setErrors({});
-              setForm({ name: "", phone: "", email: "", services: [], frequency: "", message: "" });
-              setFormKey((k) => k + 1);
-            }}
-            className="text-gold font-semibold hover:underline"
-          >
-            ← Nueva solicitud
-          </button>
-        </div>
-      </section>
-    );
-  }
+  const handleReset = () => {
+    setSubmitted(false);
+    setErrors({});
+    setForm({ name: "", phone: "", email: "", services: [], frequency: "", message: "" });
+    setFormKey((k) => k + 1);
+  };
 
   return (
     <section
-      key={formKey}
       id="contacto"
       className="py-24 lg:py-32 bg-white"
       aria-labelledby="contact-heading"
@@ -200,7 +179,22 @@ export function ContactSection() {
 
           {/* Form */}
           <div className="reveal reveal-delay-2">
+            {submitted ? (
+              <div className="bg-pearl border border-smoke rounded-2xl p-7 text-center">
+                <div className="text-5xl mb-4">✅</div>
+                <h3 className="font-display text-2xl font-bold text-volcanic mb-3">
+                  ¡Solicitud enviada!
+                </h3>
+                <p className="text-volcanic/60 mb-6">
+                  Hemos recibido tu solicitud. Te responderemos en menos de 24 horas con tu presupuesto personalizado.
+                </p>
+                <button onClick={handleReset} className="text-gold font-semibold hover:underline">
+                  ← Nueva solicitud
+                </button>
+              </div>
+            ) : (
             <form
+              key={formKey}
               onSubmit={handleSubmit}
               className="bg-pearl border border-smoke rounded-2xl p-7 space-y-5"
               noValidate
@@ -361,6 +355,7 @@ export function ContactSection() {
                 🔒 Tus datos están protegidos · Si no queda perfecto, volvemos gratis
               </p>
             </form>
+            )}
           </div>
         </div>
       </div>
