@@ -19,6 +19,12 @@ const CARD_W = 300;
 const GAP = 20;
 const STEP = CARD_W + GAP;
 
+const PALETTES = [
+  { bg: "bg-gradient-to-b from-[#fffbf0] to-white", strip: "from-gold/50 to-gold-light/20" },
+  { bg: "bg-gradient-to-b from-[#eef4fc] to-white", strip: "from-ocean/40 to-ocean/10" },
+  { bg: "bg-gradient-to-b from-pearl to-white",      strip: "from-volcanic/20 to-transparent" },
+];
+
 function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex gap-0.5">
@@ -31,13 +37,16 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-function ReviewCard({ review }: { review: Review }) {
+function ReviewCard({ review, index }: { review: Review; index: number }) {
   const initial = review.authorAttribution.displayName.charAt(0).toUpperCase();
+  const { bg, strip } = PALETTES[index % PALETTES.length];
   return (
     <div
-      className="flex-shrink-0 bg-white border border-smoke rounded-2xl p-5 flex flex-col gap-3 shadow-sm snap-start"
+      className={`flex-shrink-0 ${bg} border border-smoke rounded-2xl overflow-hidden flex flex-col shadow-sm snap-start`}
       style={{ width: CARD_W }}
     >
+      <div className={`h-1 w-full bg-gradient-to-r ${strip}`} />
+      <div className="p-5 flex flex-col gap-3 flex-1">
       <div className="flex items-center justify-between">
         <Stars rating={review.rating} />
         <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-volcanic/20" fill="currentColor">
@@ -57,6 +66,7 @@ function ReviewCard({ review }: { review: Review }) {
           </p>
           <p className="text-volcanic/35 text-xs">{review.relativePublishTimeDescription}</p>
         </div>
+      </div>
       </div>
     </div>
   );
@@ -138,7 +148,7 @@ export function ReviewsSection() {
             className="flex gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar flex-1"
           >
             {data.reviews.map((review, i) => (
-              <ReviewCard key={i} review={review} />
+              <ReviewCard key={i} review={review} index={i} />
             ))}
           </div>
 
