@@ -20,10 +20,21 @@ const GAP = 20;
 const STEP = CARD_W + GAP;
 
 const PALETTES = [
-  { bg: "bg-gradient-to-b from-[#fffbf0] to-white", strip: "from-gold/50 to-gold-light/20" },
-  { bg: "bg-gradient-to-b from-[#eef4fc] to-white", strip: "from-ocean/40 to-ocean/10" },
-  { bg: "bg-gradient-to-b from-pearl to-white",      strip: "from-volcanic/20 to-transparent" },
+  { bg: "bg-gradient-to-b from-[#fffbf0] to-white", strip: "from-gold to-gold-light/40" },
+  { bg: "bg-gradient-to-b from-[#eef4fc] to-white", strip: "from-ocean/80 to-ocean/20" },
+  { bg: "bg-gradient-to-b from-pearl to-white",      strip: "from-volcanic/40 to-transparent" },
 ];
+
+function GoogleIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05" />
+      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+    </svg>
+  );
+}
 
 function Stars({ rating }: { rating: number }) {
   return (
@@ -45,26 +56,24 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
       className={`flex-shrink-0 ${bg} border border-smoke rounded-2xl overflow-hidden flex flex-col shadow-sm snap-start`}
       style={{ width: CARD_W }}
     >
-      <div className={`h-1 w-full bg-gradient-to-r ${strip}`} />
+      <div className={`h-1.5 w-full bg-gradient-to-r ${strip}`} />
       <div className="p-5 flex flex-col gap-3 flex-1">
       <div className="flex items-center justify-between">
         <Stars rating={review.rating} />
-        <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 text-volcanic/20" fill="currentColor">
-          <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
-        </svg>
+        <GoogleIcon />
       </div>
-      <p className="text-volcanic/60 text-sm leading-relaxed line-clamp-4 flex-1">
+      <p className="text-volcanic/80 text-sm leading-relaxed line-clamp-4 flex-1">
         &ldquo;{review.text.text}&rdquo;
       </p>
       <div className="flex items-center gap-2.5 pt-2 border-t border-smoke">
-        <div className="w-7 h-7 rounded-full bg-gold/15 flex items-center justify-center text-gold font-bold text-xs flex-shrink-0">
+        <div className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
           {initial}
         </div>
         <div>
           <p className="text-volcanic text-xs font-semibold leading-none mb-0.5">
             {review.authorAttribution.displayName}
           </p>
-          <p className="text-volcanic/35 text-xs">{review.relativePublishTimeDescription}</p>
+          <p className="text-volcanic/60 text-xs">{review.relativePublishTimeDescription}</p>
         </div>
       </div>
       </div>
@@ -116,10 +125,10 @@ export function ReviewsSection() {
   if (!data?.reviews?.length) return null;
 
   return (
-    <div className="pt-16 pb-10">
+    <div className="pt-16 pb-10 bg-white">
       {/* Header */}
       <div className="max-w-xl mx-auto px-5 lg:px-8 text-center mb-10">
-        <div className="inline-flex items-center gap-2.5 bg-gold/8 border border-gold/15 rounded-full px-4 py-2 mb-5">
+        <div className="inline-flex items-center gap-2.5 border border-gold/50 rounded-full px-4 py-2 mb-5">
           <div className="flex gap-0.5">
             {[1, 2, 3, 4, 5].map((i) => (
               <svg key={i} viewBox="0 0 20 20" className="w-4 h-4 text-gold" fill="currentColor">
@@ -128,13 +137,13 @@ export function ReviewsSection() {
             ))}
           </div>
           <span className="font-bold text-volcanic text-sm">{data.rating.toFixed(1)}</span>
-          <span className="text-volcanic/25">·</span>
-          <span className="text-volcanic/50 text-sm">{data.userRatingCount} reseñas en Google</span>
+          <span className="text-volcanic/40">·</span>
+          <span className="text-volcanic text-sm">{data.userRatingCount} reseñas en Google</span>
         </div>
         <h2 className="font-display text-3xl font-bold text-volcanic mb-2">
           Lo que dicen nuestros clientes
         </h2>
-        <p className="text-volcanic/45 text-sm">Reseñas verificadas de Google</p>
+        <p className="text-volcanic/70 text-sm">Reseñas verificadas de Google</p>
       </div>
 
       {/* Carousel */}
@@ -176,7 +185,7 @@ export function ReviewsSection() {
           href="https://www.google.com/maps/place/?q=place_id:ChIJ8_3S2N3joUwROU_Bvqy1EmA"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-volcanic/40 hover:text-volcanic/70 text-sm transition-colors"
+          className="inline-flex items-center gap-1.5 text-volcanic text-sm font-medium border border-volcanic/40 hover:border-volcanic px-5 py-2.5 rounded-full transition-all"
         >
           Ver todas las reseñas en Google
           <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
