@@ -22,7 +22,7 @@ export function HeroSection() {
       <div className="relative z-10 w-full px-5 lg:px-16">
         <div className="flex flex-col items-center justify-center min-h-screen py-32 text-center w-full">
 
-          <div className="flex items-center gap-3 mb-10">
+          <div className="flex items-center mb-10">
             <Image
               src="/images/logo/logo.png"
               alt="ClarityCristal"
@@ -31,7 +31,7 @@ export function HeroSection() {
               className="h-20 w-auto object-contain brightness-0 invert"
               priority
             />
-            <span className="font-bodoni text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
+            <span className="font-serif text-3xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
               Clarity<span className="text-teal-300">Cristal</span>
             </span>
           </div>
