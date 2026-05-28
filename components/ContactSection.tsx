@@ -2,6 +2,16 @@
 
 import { useState } from "react";
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function formatPhone(value: string): string {
+  const hasPlus = value.trimStart().startsWith("+");
+  const digits = value.replace(/\D/g, "");
+  if (!digits) return hasPlus ? "+" : "";
+  const groups = digits.match(/\d{1,3}/g) ?? [];
+  return (hasPlus ? "+" : "") + groups.join(" ");
+}
+
 const CONTACT_SERVICES = [
   "Limpieza de ventanas",
   "Limpieza de paneles solares",
@@ -24,9 +34,6 @@ export function ContactSection() {
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const PHONE_REGEX = /^(\+34)?[6789]\d{8}$/;
-  const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "El nombre es obligatorio";
@@ -37,8 +44,9 @@ export function ContactSection() {
     if (phoneEmpty && emailEmpty) {
       e.contact = "Introduce un teléfono o email de contacto";
     } else {
-      if (!phoneEmpty && !PHONE_REGEX.test(form.phone.replace(/[\s\-()+]/g, "").replace(/^0034/, ""))) {
-        e.phone = "Teléfono no válido (ej: 600 000 000 o +34 600 000 000)";
+      const digitCount = form.phone.replace(/\D/g, "").length;
+      if (!phoneEmpty && (digitCount < 6 || digitCount > 15)) {
+        e.phone = "Introduce un número de teléfono válido";
       }
       if (!emailEmpty && !EMAIL_REGEX.test(form.email.trim())) {
         e.email = "Introduce un email válido (ej: tu@email.com)";
@@ -223,7 +231,7 @@ export function ContactSection() {
                     autoComplete="tel"
                     value={form.phone}
                     onChange={(e) => {
-                      setForm({ ...form, phone: e.target.value });
+                      setForm({ ...form, phone: formatPhone(e.target.value) });
                       setErrors((prev) => { const { phone: _, contact: __, ...rest } = prev; return rest; });
                     }}
                     className={`w-full rounded-xl border px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-gold/40 transition ${errors.phone || errors.contact ? "border-red-400" : "border-smoke"}`}
