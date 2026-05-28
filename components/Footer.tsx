@@ -7,7 +7,7 @@ export function Footer() {
         <div className="grid md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center mb-4">
               <Image
                 src="/images/logo/logo.png"
                 alt="ClarityCristal"
@@ -15,7 +15,7 @@ export function Footer() {
                 height={46}
                 className="h-11 w-auto object-contain brightness-0 invert"
               />
-              <span className="font-bodoni text-xl font-semibold tracking-wide text-white leading-none">
+              <span className="font-serif text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
                 Clarity<span className="text-gold">Cristal</span>
               </span>
             </div>
