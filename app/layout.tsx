@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Outfit, Bodoni_Moda } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -184,7 +186,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-body bg-pearl text-volcanic antialiased">{children}</body>
+      <body className="font-body bg-pearl text-volcanic antialiased">
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
