@@ -179,20 +179,6 @@ export function ReviewsSection() {
         </div>
       </div>
 
-      {/* CTA */}
-      <div className="text-center mt-8">
-        <a
-          href="https://www.google.com/maps/place/?q=place_id:ChIJ8_3S2N3joUwROU_Bvqy1EmA"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-volcanic text-sm font-medium border border-volcanic/40 hover:border-volcanic px-5 py-2.5 rounded-full transition-all"
-        >
-          Ver todas las reseñas en Google
-          <svg viewBox="0 0 20 20" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-            <path d="M7 17l9.2-9.2M17 17V7.8H7.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </a>
-      </div>
     </div>
   );
 }
