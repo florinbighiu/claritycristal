@@ -164,19 +164,6 @@ export function ReviewsSection() {
           <ArrowButton dir="right" onClick={() => scroll("right")} disabled={!canNext} />
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-1.5 mt-6">
-          {data.reviews.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                trackRef.current?.scrollTo({ left: i * STEP, behavior: "smooth" });
-              }}
-              aria-label={`Ir a reseña ${i + 1}`}
-              className="w-1.5 h-1.5 rounded-full bg-volcanic/20 hover:bg-gold transition-colors"
-            />
-          ))}
-        </div>
       </div>
 
     </div>
