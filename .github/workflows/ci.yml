@@ -1,0 +1,76 @@
+# CI/CD — runs automatically on GitHub for every push to main and every PR.
+# This is the "continuous integration" safety net: nobody can merge code that
+# breaks the type-check, the unit/component/api tests, or the E2E flow.
+name: CI
+
+# WHEN this runs.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: fast checks — type-check + Vitest (unit, component, api).
+  # These finish in seconds, so they give near-instant feedback on a PR.
+  # ---------------------------------------------------------------------------
+  test:
+    name: Type-check & unit/component/api tests
+    runs-on: ubuntu-latest
+    steps:
+      # Pull the repo's code onto the CI machine.
+      - uses: actions/checkout@v4
+
+      # Install Node. `cache: npm` caches ~/.npm between runs for speed.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # `npm ci` = clean, reproducible install straight from package-lock.json.
+      # Use it in CI instead of `npm install` (which can change the lockfile).
+      - run: npm ci
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Run Vitest
+        run: npm test
+
+  # ---------------------------------------------------------------------------
+  # Job 2: slow checks — Playwright E2E in a real browser.
+  # Separated so the fast feedback (Job 1) isn't held up by the slow build.
+  # The two jobs run in PARALLEL.
+  # ---------------------------------------------------------------------------
+  e2e:
+    name: End-to-end (Playwright)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # Install just the Chromium browser plus its OS dependencies.
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # playwright.config.ts builds + starts the app, then runs the tests.
+      # No RESEND_API_KEY secret is needed: the config falls back to a dummy
+      # key, and the E2E test intercepts the /api/contact call anyway.
+      - name: Run E2E tests
+        run: npm run e2e
+
+      # If E2E fails, save the HTML report so you can download and inspect it
+      # from the GitHub Actions run page. `if: always()` = upload even on failure.
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

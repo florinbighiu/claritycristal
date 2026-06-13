@@ -2,32 +2,11 @@
 
 import { useState } from "react";
 import { pushEvent } from "@/lib/gtm";
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function formatPhone(value: string): string {
-  const hasPlus = value.trimStart().startsWith("+");
-  const digits = value.replace(/\D/g, "");
-  if (!digits) return hasPlus ? "+" : "";
-
-  if (hasPlus) {
-    const countryCode = digits.slice(0, 2);
-    const rest = digits.slice(2);
-    const groups = rest.match(/\d{1,3}/g) ?? [];
-    return "+" + countryCode + (groups.length ? " " + groups.join(" ") : "");
-  }
-
-  const groups = digits.match(/\d{1,3}/g) ?? [];
-  return groups.join(" ");
-}
-
-const CONTACT_SERVICES = [
-  "Limpieza de ventanas",
-  "Limpieza de paneles solares",
-  "Limpieza post-obra",
-  "Rótulos/Carteles y/o Fachadas",
-  "Servicio urgente",
-];
+import {
+  CONTACT_SERVICES,
+  formatPhone,
+  validateContactForm,
+} from "@/lib/contactForm";
 
 export function ContactSection() {
   const [form, setForm] = useState({
@@ -43,32 +22,9 @@ export function ContactSection() {
   const [sending, setSending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validate = () => {
-    const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = "El nombre es obligatorio";
-
-    const phoneEmpty = !form.phone.trim();
-    const emailEmpty = !form.email.trim();
-
-    if (phoneEmpty && emailEmpty) {
-      e.contact = "Introduce un teléfono o email de contacto";
-    } else {
-      const digitCount = form.phone.replace(/\D/g, "").length;
-      if (!phoneEmpty && (digitCount < 6 || digitCount > 15)) {
-        e.phone = "Introduce un número de teléfono válido";
-      }
-      if (!emailEmpty && !EMAIL_REGEX.test(form.email.trim())) {
-        e.email = "Introduce un email válido (ej: tu@email.com)";
-      }
-    }
-
-    if (form.services.length === 0) e.services = "Selecciona al menos un servicio";
-    return e;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const errs = validate();
+    const errs = validateContactForm(form);
     if (Object.keys(errs).length) { setErrors(errs); return; }
 
     setSending(true);
