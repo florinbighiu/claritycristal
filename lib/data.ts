@@ -6,6 +6,7 @@ export interface Plan {
   sessions: number;
   discount: number;
   popular: boolean;
+  cadence: string;
   features: string[];
   rainGuarantee: string;
   badge?: string;
@@ -36,12 +37,11 @@ export const PLANS: Plan[] = [
     discount: 10,
     popular: false,
     rainGuarantee: "3 días",
+    cadence: "Una limpieza cada 4 meses · 3 al año",
     features: [
-      "Agua 100% pura desmineralizada",
-      "Limpieza interior & exterior",
-      "Servicio cada 4 meses",
-      "Garantía de lluvia 3 días",
-      "Desplazamiento incluido",
+      "3 limpiezas programadas al año",
+      "Si llueve en los 3 días siguientes, repetimos sin coste",
+      "Recordatorio antes de cada visita",
     ],
   },
   {
@@ -51,17 +51,14 @@ export const PLANS: Plan[] = [
     discount: 15,
     popular: true,
     rainGuarantee: "5 días",
-    badge: "Más Popular",
+    badge: "Más popular",
+    cadence: "Una limpieza cada 2 meses · 6 al año",
     features: [
-      "Agua 100% pura desmineralizada",
-      "Flexibilidad total de horario",
-      "Interior & exterior",
-      "Recordatorios programados",
-      "Prioridad en agenda",
-      "Garantía de lluvia 5 días",
-      "+5% desc. en servicios extra",
-      "Cancela cuando quieras",
-      "Garantía de precio fijo",
+      "6 limpiezas programadas al año",
+      "Si llueve en los 5 días siguientes, repetimos sin coste",
+      "Prioridad en agenda y horario flexible",
+      "Recordatorios automáticos",
+      "5% extra de descuento en servicios sueltos",
     ],
   },
   {
@@ -71,17 +68,14 @@ export const PLANS: Plan[] = [
     discount: 20,
     popular: false,
     rainGuarantee: "7 días",
+    cadence: "Casi mensual · 10 al año",
     features: [
-      "Agua 100% pura desmineralizada",
-      "Flexibilidad total de horario",
+      "10 limpiezas programadas al año",
+      "Si llueve en los 7 días siguientes, repetimos sin coste",
       "Atención prioritaria VIP",
-      "Recordatorios personalizados",
-      "Garantía de lluvia 7 días",
-      "Sesiones urgencia sin coste",
-      "+10% desc. en servicios extra",
-      "Ideal para locales comerciales",
-      "Cancela cuando quieras",
-      "Garantía de precio fijo",
+      "Sesiones de urgencia sin coste",
+      "10% extra de descuento en servicios sueltos",
+      "Ideal para locales y comercios",
     ],
   },
 ];

@@ -13,7 +13,7 @@ export function PricingSection() {
       className="py-24 lg:py-32 bg-pearl"
       aria-labelledby="pricing-heading"
     >
-      <div className="max-w-7xl mx-auto px-5 lg:px-8">
+      <div className="max-w-[90rem] mx-auto px-5 lg:px-8">
         {/* Recurring plans */}
         <div className="text-center mb-10">
           <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
@@ -22,12 +22,30 @@ export function PricingSection() {
           <h3 className="reveal reveal-delay-1 font-display text-3xl font-bold text-volcanic">
             Contratos de mantenimiento
           </h3>
-          <p className="reveal reveal-delay-2 mt-3 text-volcanic/60 max-w-lg mx-auto text-sm">
-            Mantén tus vistas siempre cristalinas. Cuantas más sesiones, mayor descuento.
-          </p>
+          <div className="reveal reveal-delay-2 mt-8 flex items-start gap-4 rounded-2xl border border-smoke bg-white p-5 text-left">
+            <div className="shrink-0 w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center text-gold">
+              <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" aria-hidden="true">
+                <rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div>
+              <p className="font-semibold text-volcanic mb-1">Cómo funciona</p>
+              <p className="text-volcanic/70 text-sm leading-relaxed">
+                En tu primera limpieza calculamos y fijamos tu precio. A partir de ahí,
+                ese precio queda congelado todo el año y cada sesión dentro de tu plan
+                tiene descuento. Cuanto más a menudo, más barata te sale cada visita.
+              </p>
+              <p className="mt-3 text-volcanic/70 text-xs leading-relaxed">
+                <span className="font-semibold text-volcanic">Ejemplo orientativo:</span> una
+                limpieza de 100€ quedaría en 90€ (Esencial), 85€ (Plus) u 80€ (Elite) por
+                sesión. Tu precio real se calcula en la primera visita.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {PLANS.map((plan, i) => (
             <article
               key={plan.key}
@@ -48,14 +66,14 @@ export function PricingSection() {
                   {plan.name}
                 </h3>
                 <p className={`text-sm mb-5 ${plan.popular ? "text-white/60" : "text-volcanic/50"}`}>
-                  {plan.sessions} sesiones / año
+                  {plan.cadence}
                 </p>
                 <div className="flex items-center gap-3 mb-5">
                   <div className={`inline-flex items-baseline gap-1 font-display font-bold text-4xl ${plan.popular ? "text-gold" : "text-volcanic"}`}>
                     -{plan.discount}%
                   </div>
                   <span className={`text-sm ${plan.popular ? "text-white/60" : "text-volcanic/50"}`}>
-                    de descuento
+                    sobre tu precio por sesión
                   </span>
                 </div>
                 <ul className="space-y-2.5" role="list">
