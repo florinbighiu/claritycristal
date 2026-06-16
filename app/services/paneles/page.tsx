@@ -149,7 +149,6 @@ export default function PanelesPage() {
                     { icon: "🚫", text: "Sin productos químicos — no daña el recubrimiento antireflectante" },
                     { icon: "🛡️", text: "Seguro de responsabilidad civil incluido" },
                     { icon: "✅", text: "Apto para todos los fabricantes (Solaria, Canadian, Longi, etc.)" },
-                    { icon: "🌧️", text: "Lluvia posterior: si llueve en 3 días, la repetición tiene un coste adicional" },
                   ].map((f) => (
                     <div key={f.text} className="flex items-start gap-3 text-sm text-volcanic/70">
                       <span className="shrink-0 text-base" aria-hidden="true">{f.icon}</span>

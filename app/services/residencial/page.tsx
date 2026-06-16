@@ -103,7 +103,6 @@ export default function ResidencialPage() {
                   { icon: "🔭", text: "Pértigas telescópicas — limpieza desde el suelo, sin escaleras" },
                   { icon: "🛡️", text: "Seguro de responsabilidad civil incluido" },
                   { icon: "⏰", text: "No necesitas estar en casa — solo acceso al exterior" },
-                  { icon: "🌧️", text: "Lluvia posterior: si llueve en 3 días, la repetición tiene un coste adicional" },
                 ].map((f) => (
                   <div key={f.text} className="flex items-start gap-3 text-sm text-volcanic/70">
                     <span className="shrink-0 text-base" aria-hidden="true">{f.icon}</span>
