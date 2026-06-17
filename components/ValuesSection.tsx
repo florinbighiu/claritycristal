@@ -1,41 +1,51 @@
 import { VALUES } from "@/lib/data";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 
 export function ValuesSection() {
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-[#002d4a] via-[#0a3d5c] to-[#001e38] relative overflow-hidden" aria-labelledby="values-heading">
-      <div className="absolute top-0 left-1/4 w-64 h-64 bg-teal-400/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl" />
-      <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Nuestros valores
-          </p>
+    <section
+      className="cc-ink-bg cc-seam-gold noise relative overflow-hidden py-24 lg:py-32"
+      aria-labelledby="values-heading"
+    >
+      <div className="cc-grid-dark absolute inset-0" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="mb-16 max-w-2xl">
+          <SectionEyebrow index="06" label="Nuestros valores" tone="dark" />
           <h2
             id="values-heading"
-            className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-white"
+            className="mt-6 font-display text-4xl font-semibold tracking-tight text-white lg:text-[3.6rem] lg:leading-[1.0]"
           >
-            Cada limpieza refleja
-            <br />
+            Cada limpieza refleja{" "}
             <span className="italic text-gold">nuestro compromiso</span>
           </h2>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <div className="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-3">
           {VALUES.map((v, i) => (
             <div
               key={v.title}
-              className={`reveal reveal-delay-${(i % 3) + 1} group bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1`}
+              className="group relative bg-[#0a1830]/40 p-7 transition-colors duration-300 hover:bg-white/[0.04] lg:p-8"
             >
-              <div className="text-3xl mb-3" aria-hidden="true">{v.icon}</div>
-              <h3 className="font-display text-lg font-bold text-white mb-2">{v.title}</h3>
-              <p className="text-white/50 text-sm leading-relaxed">{v.desc}</p>
+              <span
+                className="cc-mono absolute right-6 top-6 text-[11px] tracking-widest text-white/25"
+                aria-hidden="true"
+              >
+                0{i + 1}
+              </span>
+              <div className="mb-4 text-3xl transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden="true">
+                {v.icon}
+              </div>
+              <h3 className="mb-2 font-display text-xl font-semibold text-white">{v.title}</h3>
+              <p className="text-sm leading-relaxed text-white/55">{v.desc}</p>
+              <span className="mt-5 block h-px w-0 bg-gradient-to-r from-gold to-transparent transition-all duration-500 group-hover:w-16" />
             </div>
           ))}
         </div>
-        <div className="reveal mt-12 text-center">
-          <p className="text-white/40 text-sm italic">
-            ClarityCristal — Una empresa local comprometida, que trabaja con orgullo profesional y responsabilidad
-          </p>
-        </div>
+
+        <p className="mt-12 text-center font-display text-sm italic text-white/40">
+          ClarityCristal — una empresa local comprometida, que trabaja con orgullo profesional y responsabilidad
+        </p>
       </div>
     </section>
   );

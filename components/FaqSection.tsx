@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FAQ_ITEMS, WA_LINK, WA_MSG } from "@/lib/data";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 
 export function FaqSection() {
   const [open, setOpen] = useState<number | null>(null);
@@ -10,40 +11,45 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="py-24 lg:py-32 bg-pearl"
+      className="cc-paper-bg cc-seam-top relative overflow-hidden py-24 lg:py-32"
       aria-labelledby="faq-heading"
     >
-      <div className="max-w-4xl mx-auto px-5 lg:px-8">
-        <div className="text-center mb-12">
-          <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Preguntas frecuentes
-          </p>
+      <div className="cc-grid absolute inset-0" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-4xl px-5 lg:px-8">
+        <div className="mb-12 flex flex-col items-center text-center">
+          <div className="reveal">
+            <SectionEyebrow index="07" label="Preguntas frecuentes" align="center" />
+          </div>
           <h2
             id="faq-heading"
-            className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-volcanic"
+            className="reveal reveal-delay-1 mt-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-5xl"
           >
             Resolvemos tus{" "}
             <span className="italic text-ocean">dudas</span>
           </h2>
         </div>
 
-        <div className="space-y-3">
+        <div className="overflow-hidden rounded-2xl border border-volcanic/10 bg-white/80 backdrop-blur-sm">
           {FAQ_ITEMS.map((item, i) => (
             <div
               key={i}
-              className="reveal reveal-delay-1 bg-white border border-smoke rounded-2xl overflow-hidden"
+              className="reveal border-b border-volcanic/8 last:border-0"
             >
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 font-semibold text-volcanic hover:text-ocean transition-colors"
+                className="group flex w-full items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-volcanic transition-colors hover:text-ocean"
                 aria-expanded={open === i}
                 aria-controls={`faq-answer-${i}`}
               >
-                <span>{item.q}</span>
+                <span className="flex items-baseline gap-3">
+                  <span className="cc-mono text-xs text-gold" aria-hidden="true">{(i + 1).toString().padStart(2, "0")}</span>
+                  {item.q}
+                </span>
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
-                  className={`w-5 h-5 shrink-0 text-gold transition-transform ${open === i ? "rotate-180" : ""}`}
+                  className={`h-5 w-5 shrink-0 text-gold transition-transform duration-300 ${open === i ? "rotate-180" : ""}`}
                   aria-hidden="true"
                 >
                   <path d="M19 9l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -51,16 +57,16 @@ export function FaqSection() {
               </button>
               <div
                 id={`faq-answer-${i}`}
-                className={`overflow-hidden transition-all duration-300 ${open === i ? "max-h-48" : "max-h-0"}`}
+                className={`overflow-hidden transition-all duration-300 ${open === i ? "max-h-96" : "max-h-0"}`}
               >
-                <p className="px-6 pb-5 text-volcanic/60 text-sm leading-relaxed">{item.a}</p>
+                <p className="px-6 pb-5 pl-[3.65rem] text-sm leading-relaxed text-volcanic/60">{item.a}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="reveal mt-10 text-center">
-          <p className="text-volcanic/60 mb-4">¿Tienes más preguntas?</p>
+          <p className="mb-4 text-volcanic/60">¿Tienes más preguntas?</p>
           <a
             href={`${WA_LINK}?text=${WA_MSG}`}
             target="_blank"

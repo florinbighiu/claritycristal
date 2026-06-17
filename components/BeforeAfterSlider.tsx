@@ -2,6 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 
 export function BeforeAfterSlider() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,30 +35,32 @@ export function BeforeAfterSlider() {
   return (
     <section
       id="metodo"
-      className="py-24 lg:py-32 bg-pearl"
+      className="cc-paper-bg-alt cc-seam-top relative overflow-hidden py-24 lg:py-32"
       aria-labelledby="method-heading"
     >
-      <div className="max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="cc-grid absolute inset-0" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="grid items-center gap-16 lg:grid-cols-2">
           {/* Text */}
           <div>
-            <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Nuestro método exclusivo
-            </p>
+            <div className="reveal">
+              <SectionEyebrow index="03" label="Nuestro método exclusivo" />
+            </div>
             <h2
               id="method-heading"
-              className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-volcanic mb-6"
+              className="reveal reveal-delay-1 mt-6 mb-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-[3.4rem] lg:leading-[1.02]"
             >
               El secreto:{" "}
               <span className="italic text-ocean">agua sin cal</span>
             </h2>
-            <p className="reveal reveal-delay-2 text-volcanic/60 text-lg mb-8 leading-relaxed">
+            <p className="reveal reveal-delay-2 mb-8 text-lg leading-relaxed text-volcanic/60">
               El agua del grifo tiene entre 100-500 ppm de minerales que dejan marcas al
-              secarse. Nuestra agua ultrapura a <strong>0 ppm</strong> solo contiene H₂O, sin
+              secarse. Nuestra agua ultrapura a <strong className="text-volcanic">0 ppm</strong> solo contiene H₂O, sin
               residuos que se depositen en el cristal.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
+            <div className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-volcanic/10 bg-volcanic/10">
               {[
                 { stat: "0 ppm", label: "Pureza del agua" },
                 { stat: "30%", label: "Más rápido" },
@@ -66,10 +69,10 @@ export function BeforeAfterSlider() {
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="reveal reveal-delay-2 bg-white rounded-xl p-5 border border-smoke text-center"
+                  className="reveal reveal-delay-2 bg-pearl p-5"
                 >
-                  <div className="font-display text-3xl font-bold text-gold">{s.stat}</div>
-                  <div className="text-xs text-volcanic/50 mt-1 font-medium uppercase tracking-wide">
+                  <div className="font-display text-3xl font-semibold text-volcanic">{s.stat}</div>
+                  <div className="mt-1 text-[11px] font-medium uppercase tracking-wider text-volcanic/45">
                     {s.label}
                   </div>
                 </div>

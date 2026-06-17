@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { pushEvent } from "@/lib/gtm";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import {
   CONTACT_SERVICES,
   formatPhone,
@@ -61,24 +62,26 @@ export function ContactSection() {
   return (
     <section
       id="contacto"
-      className="py-24 lg:py-32 bg-white"
+      className="cc-paper-bg-alt cc-seam-top noise relative overflow-hidden py-24 lg:py-32"
       aria-labelledby="contact-heading"
     >
-      <div className="max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <div className="cc-grid absolute inset-0" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
           {/* Info */}
           <div>
-            <p className="reveal text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Contacto
-            </p>
+            <div className="reveal">
+              <SectionEyebrow index="08" label="Contacto" tone="light" />
+            </div>
             <h2
               id="contact-heading"
-              className="reveal reveal-delay-1 font-display text-4xl lg:text-5xl font-bold text-volcanic mb-6"
+              className="reveal reveal-delay-1 mt-6 mb-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-[3.4rem] lg:leading-[1.02]"
             >
               Solicita tu{" "}
               <span className="italic text-ocean">presupuesto gratis</span>
             </h2>
-            <p className="reveal reveal-delay-2 text-volcanic/60 text-lg mb-10 leading-relaxed">
+            <p className="reveal reveal-delay-2 mb-10 text-lg leading-relaxed text-volcanic/70">
               Rellena el formulario y te enviamos una cotización detallada adaptada a tus
               necesidades. Sin compromiso, sin letra pequeña.
             </p>
@@ -112,25 +115,25 @@ export function ContactSection() {
                   target={c.href.startsWith("http") ? "_blank" : undefined}
                   rel={c.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   onClick={() => pushEvent(c.href.startsWith("tel:") ? "click_phone" : "click_email", { location: "contact" })}
-                  className="flex items-start gap-4 p-4 rounded-xl hover:bg-pearl transition-colors group"
+                  className="group flex items-start gap-4 rounded-xl border border-volcanic/10 bg-white/70 p-4 shadow-sm shadow-volcanic/5 transition-colors hover:bg-white"
                   aria-label={`${c.label}: ${c.value}`}
                 >
-                  <div className="w-10 h-10 bg-gold/10 rounded-xl flex items-center justify-center text-gold shrink-0 group-hover:bg-gold/20 transition-colors">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ocean/10 text-ocean transition-colors group-hover:bg-ocean/20">
                     {c.icon}
                   </div>
                   <div>
-                    <p className="text-xs text-volcanic/40 font-medium uppercase tracking-wide mb-0.5">
+                    <p className="mb-0.5 text-xs font-medium uppercase tracking-wide text-volcanic/55">
                       {c.label}
                     </p>
-                    <p className="text-volcanic font-medium">{c.value}</p>
+                    <p className="font-medium text-volcanic">{c.value}</p>
                   </div>
                 </a>
               ))}
             </div>
 
-            <div className="reveal mt-8 p-5 bg-gold/5 border border-gold/20 rounded-2xl">
-              <p className="font-semibold text-volcanic text-sm mb-1">🛡️ Garantía de satisfacción</p>
-              <p className="text-volcanic/60 text-sm">
+            <div className="reveal mt-8 rounded-2xl border border-gold/40 bg-gold/10 p-5">
+              <p className="mb-1 text-sm font-semibold text-volcanic">🛡️ Garantía de satisfacción</p>
+              <p className="text-sm text-volcanic/70">
                 Si no queda perfecto, volvemos sin coste alguno. Sin excusas, sin letra pequeña.
               </p>
             </div>
@@ -139,9 +142,9 @@ export function ContactSection() {
           {/* Form */}
           <div className="reveal reveal-delay-2">
             {submitted ? (
-              <div className="bg-pearl border border-smoke rounded-2xl p-7 text-center">
-                <div className="text-5xl mb-4">✅</div>
-                <h3 className="font-display text-2xl font-bold text-volcanic mb-3">
+              <div className="rounded-2xl border border-volcanic/10 bg-white p-7 text-center shadow-2xl shadow-black/20">
+                <div className="mb-4 text-5xl">✅</div>
+                <h3 className="mb-3 font-display text-2xl font-semibold text-volcanic">
                   ¡Solicitud enviada!
                 </h3>
                 <p className="text-volcanic/60 mb-6">
@@ -155,7 +158,7 @@ export function ContactSection() {
             <form
               key={formKey}
               onSubmit={handleSubmit}
-              className="bg-pearl border border-smoke rounded-2xl p-7 space-y-5"
+              className="cc-topline space-y-5 overflow-hidden rounded-2xl border border-volcanic/10 bg-white p-7 shadow-2xl shadow-black/20"
               noValidate
               aria-label="Formulario de solicitud de presupuesto"
             >
@@ -236,10 +239,10 @@ export function ContactSection() {
                       key={s}
                       onClick={() => toggleService(s)}
                       aria-pressed={form.services.includes(s)}
-                      className={`text-xs font-medium px-3 py-2 rounded-lg border transition-all ${
+                      className={`text-xs font-semibold px-3 py-2 rounded-lg border transition-all ${
                         form.services.includes(s)
-                          ? "bg-gold/10 border-gold text-gold"
-                          : "bg-white border-smoke text-volcanic/60 hover:border-gold/40"
+                          ? "bg-gold/15 border-gold text-volcanic ring-1 ring-gold"
+                          : "bg-white border-smoke text-volcanic/60 font-medium hover:border-gold/40"
                       }`}
                     >
                       {s}
@@ -289,7 +292,7 @@ export function ContactSection() {
               <button
                 type="submit"
                 disabled={sending}
-                className="btn-gold w-full flex items-center justify-center gap-2 text-white font-bold py-4 rounded-xl text-sm disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-gold w-full flex items-center justify-center gap-2 font-bold py-4 rounded-xl text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                 aria-label="Enviar solicitud de presupuesto"
               >
                 {sending ? (

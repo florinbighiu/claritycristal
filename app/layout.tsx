@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
-import { Fraunces, Outfit, Bodoni_Moda } from "next/font/google";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const fraunces = Fraunces({
+// Headers + logo/wordmark — dramatic high-contrast display serif.
+const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-display",
+  weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const outfit = Outfit({
+// Body / UI text — clean geometric sans.
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-outfit",
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
-});
-
-const bodoni = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-bodoni",
-  weight: ["600"],
-  display: "swap",
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -179,7 +176,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${fraunces.variable} ${outfit.variable} ${bodoni.variable}`}>
+    <html lang="es" className={`${dmSerif.variable} ${dmSans.variable}`}>
       <head>
         <script
           dangerouslySetInnerHTML={{

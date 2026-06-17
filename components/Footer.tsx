@@ -5,12 +5,13 @@ import { pushEvent } from "@/lib/gtm";
 
 export function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-[#002d4a] via-[#0a3d5c] to-[#001e38] text-white" role="contentinfo">
-      <div className="max-w-7xl mx-auto px-5 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-10">
+    <footer className="cc-footer-bg cc-seam-gold relative overflow-hidden text-white" role="contentinfo">
+      <div className="cc-grid-dark absolute inset-0" aria-hidden="true" />
+      <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 lg:px-8">
+        <div className="grid gap-10 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
+            <div className="mb-4 flex items-center">
               <Image
                 src="/images/logo/logo.png"
                 alt="ClarityCristal"
@@ -18,15 +19,15 @@ export function Footer() {
                 height={66}
                 className="h-16 w-auto object-contain brightness-0 invert"
               />
-              <span className="font-serif text-2xl font-semibold tracking-wide text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] leading-none">
+              <span className="font-wordmark text-[1.7rem] font-semibold leading-none tracking-tight text-white drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
                 Clarity<span className="text-gold">Cristal</span>
               </span>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+            <p className="text-white/70 text-sm leading-relaxed max-w-xs mb-6">
               Especialistas en limpieza de superficies acristaladas y paneles solares en
               Lanzarote. Servicio profesional y confiable para empresas y particulares.
             </p>
-            <div className="flex items-center gap-1 text-xs text-white/30 mb-2">
+            <div className="flex items-center gap-1 text-xs text-white/60 mb-2">
               <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5 text-gold" aria-hidden="true">
                 <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -36,7 +37,7 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/60 mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/75 mb-4">
               Servicios
             </h3>
             <nav aria-label="Servicios">
@@ -51,7 +52,7 @@ export function Footer() {
                   <li key={s.label}>
                     <a
                       href={s.href}
-                      className="text-white/50 hover:text-gold text-sm transition-colors"
+                      className="text-white/70 hover:text-gold text-sm transition-colors"
                     >
                       {s.label}
                     </a>
@@ -63,7 +64,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/60 mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/75 mb-4">
               Contacto
             </h3>
             <ul className="space-y-2">
@@ -78,7 +79,7 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/60 mt-6 mb-4">
+            <h3 className="font-semibold text-sm uppercase tracking-widest text-white/75 mt-6 mb-4">
               Redes
             </h3>
             <div className="flex gap-3">
@@ -125,7 +126,7 @@ export function Footer() {
                   href={soc.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-gold/20 hover:text-gold text-white/40 flex items-center justify-center transition-all"
+                  className="w-9 h-9 rounded-lg bg-white/10 hover:bg-gold/20 hover:text-gold text-white/65 flex items-center justify-center transition-all"
                   aria-label={`Seguir en ${soc.label}`}
                 >
                   {soc.icon}
@@ -136,12 +137,12 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs">
+          <p className="text-white/60 text-xs">
             © 2026 ClarityCristal. Todos los derechos reservados.
           </p>
-          <p className="text-white/30 text-xs">
+          <p className="text-white/60 text-xs">
             Diseñado y desarrollado por - {" "}
-            <a href="https://florinbighiu.dev" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-gold transition-colors">Florin Bighiu</a>
+            <a href="https://florinbighiu.dev" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-gold transition-colors">Florin Bighiu</a>
           </p>
           <nav aria-label="Legal" className="flex gap-5">
             {[
@@ -149,7 +150,7 @@ export function Footer() {
               { label: "Política de Privacidad", href: "/politica-de-privacidad" },
               { label: "Términos y Condiciones", href: "/terminos-y-condiciones" },
             ].map((l) => (
-              <a key={l.label} href={l.href} className="text-white/30 hover:text-white/60 text-xs transition-colors">
+              <a key={l.label} href={l.href} className="text-white/60 hover:text-white text-xs transition-colors">
                 {l.label}
               </a>
             ))}

@@ -50,11 +50,8 @@ export function NavBar() {
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
-  const linkClass = `px-4 py-2 rounded-full text-base font-medium transition-colors ${
-    scrolled
-      ? "text-volcanic/70 hover:text-volcanic hover:bg-black/5"
-      : "text-white/80 hover:text-white hover:bg-white/10"
-  }`;
+  const linkClass =
+    "px-4 py-2 rounded-full text-[15px] font-medium text-volcanic/70 transition-colors hover:text-gold hover:bg-gold/5";
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 pt-4" role="banner">
@@ -62,10 +59,10 @@ export function NavBar() {
 
         {/* Desktop pill — centered */}
         <div
-          className={`hidden lg:block rounded-full border transition-all duration-300 ${
+          className={`hidden rounded-full border transition-all duration-300 lg:block ${
             scrolled
-              ? "bg-white/30 border-black/10 backdrop-blur-xl shadow-lg shadow-black/15 ring-1 ring-black/5"
-              : "bg-white/5 border-white/20 backdrop-blur-sm shadow-md shadow-black/10"
+              ? "border-volcanic/10 bg-white/70 shadow-lg shadow-volcanic/10 ring-1 ring-white/40 backdrop-blur-xl"
+              : "border-volcanic/10 bg-white/40 shadow-md shadow-volcanic/5 backdrop-blur-md"
           }`}
         >
           <div className="flex items-center gap-1 px-8 h-16">
@@ -123,10 +120,10 @@ export function NavBar() {
         {/* Mobile — hamburger button only, top-right */}
         <div className="lg:hidden absolute right-5 top-0">
           <button
-            className={`w-10 h-10 rounded-full border flex items-center justify-center transition-all duration-300 ${
+            className={`flex h-10 w-10 items-center justify-center rounded-full border text-volcanic transition-all duration-300 ${
               scrolled
-                ? "bg-white/30 border-black/10 backdrop-blur-xl text-volcanic shadow-md"
-                : "bg-white/5 border-white/20 backdrop-blur-sm text-white"
+                ? "border-volcanic/10 bg-white/70 shadow-md backdrop-blur-xl"
+                : "border-volcanic/10 bg-white/50 shadow-sm backdrop-blur-md"
             }`}
             onClick={() => setOpen(!open)}
             aria-expanded={open}

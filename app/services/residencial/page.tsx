@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { NavBar } from "@/components/NavBar";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { WhatsAppIcon } from "@/components/WhatsAppIcon";
+import { ServiceHero } from "@/components/ServiceHero";
+import { SectionEyebrow } from "@/components/SectionEyebrow";
 import { WA_LINK } from "@/lib/data";
 
 const WA_MSG_RESIDENCIAL = encodeURIComponent(
@@ -14,50 +15,26 @@ export default function ResidencialPage() {
     <main>
       <NavBar />
 
-      {/* Hero */}
-      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#002d4a] via-[#0a5272] to-[#001e38]" />
-        <div className="absolute top-1/3 right-1/4 w-72 h-72 rounded-full bg-teal-400/15 blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/3 w-48 h-48 rounded-full bg-emerald-400/10 blur-3xl" />
-
-        <div className="relative z-10 max-w-4xl mx-auto px-5 lg:px-8 text-center py-20">
-          <div className="inline-flex items-center gap-2 bg-teal-400/15 border border-teal-300/30 text-teal-200 rounded-full px-4 py-1.5 text-sm font-medium mb-6">
-            <span className="w-2 h-2 bg-teal-400 rounded-full" />
-            Servicio Residencial
-          </div>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+      <ServiceHero
+        index="R"
+        eyebrow="Servicio Residencial"
+        title={
+          <>
             Tu hogar, con la{" "}
-            <span className="text-emerald-400 italic">claridad</span> que merece
-          </h1>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto mb-8">
-            Limpieza profesional de ventanas y cristales para viviendas en Lanzarote.
-            Agua ultrapura, sin marcas, sin esfuerzo por tu parte.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href={`${WA_LINK}?text=${WA_MSG_RESIDENCIAL}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-gold flex items-center gap-3 text-white font-bold px-8 py-4 rounded-full text-lg shadow-2xl"
-            >
-              <WhatsAppIcon className="w-5 h-5" />
-              Presupuesto gratis
-            </a>
-            <Link href="/" className="text-white/60 hover:text-white font-medium px-6 py-4 border border-white/20 rounded-full transition-colors hover:border-white/40">
-              ← Volver al inicio
-            </Link>
-          </div>
-        </div>
-      </section>
+            <span className="italic text-ocean">claridad</span> que merece
+          </>
+        }
+        description="Limpieza profesional de ventanas y cristales para viviendas en Lanzarote. Agua ultrapura, sin marcas, sin esfuerzo por tu parte."
+        waHref={`${WA_LINK}?text=${WA_MSG_RESIDENCIAL}`}
+        ctaLabel="Presupuesto gratis"
+      />
 
       {/* What we clean */}
-      <section className="py-24 bg-white">
+      <section className="cc-paper-bg-alt cc-seam-top py-24">
         <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-              Qué limpiamos
-            </p>
-            <h2 className="font-display text-4xl font-bold text-volcanic">
+          <div className="mb-16 flex flex-col items-center text-center">
+            <SectionEyebrow index="R—01" label="Qué limpiamos" align="center" />
+            <h2 className="mt-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-5xl">
               Cubrimos todas las superficies{" "}
               <span className="italic text-ocean">acristaladas</span>
             </h2>
@@ -69,10 +46,10 @@ export default function ResidencialPage() {
               { icon: "🏠", title: "Contraventanas", desc: "Persianas enrollables y contraventanas de aluminio o PVC." },
               { icon: "🔲", title: "Claraboyas", desc: "Lucernarios y ventanas de techo con acceso seguro." },
             ].map((item) => (
-              <div key={item.title} className="bg-pearl border border-smoke rounded-2xl p-6 text-center hover:shadow-lg transition-shadow">
-                <div className="text-4xl mb-3" aria-hidden="true">{item.icon}</div>
-                <h3 className="font-display text-lg font-bold text-volcanic mb-2">{item.title}</h3>
-                <p className="text-sm text-volcanic/60 leading-relaxed">{item.desc}</p>
+              <div key={item.title} className="cc-card cc-topline overflow-hidden rounded-[20px] p-6 text-center">
+                <div className="mb-3 text-4xl" aria-hidden="true">{item.icon}</div>
+                <h3 className="mb-2 font-display text-lg font-semibold text-volcanic">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-volcanic/60">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -80,20 +57,19 @@ export default function ResidencialPage() {
       </section>
 
       {/* Why us */}
-      <section className="py-24 bg-pearl">
-        <div className="max-w-7xl mx-auto px-5 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="cc-paper-bg cc-seam-top relative overflow-hidden py-24">
+        <div className="cc-grid absolute inset-0" aria-hidden="true" />
+        <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
             <div>
-              <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-                ¿Por qué elegirnos?
-              </p>
-              <h2 className="font-display text-4xl font-bold text-volcanic mb-6">
+              <SectionEyebrow index="R—02" label="¿Por qué elegirnos?" />
+              <h2 className="mt-6 mb-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-5xl">
                 La diferencia está en el{" "}
                 <span className="italic text-ocean">agua</span>
               </h2>
-              <p className="text-volcanic/60 text-lg mb-8 leading-relaxed">
+              <p className="mb-8 text-lg leading-relaxed text-volcanic/60">
                 El agua del grifo deja depósitos de cal al secarse. Nosotros usamos agua
-                ultrapura a <strong>0 ppm</strong> que se evapora limpiamente, sin dejar
+                ultrapura a <strong className="text-volcanic">0 ppm</strong> que se evapora limpiamente, sin dejar
                 ningún residuo visible.
               </p>
               <div className="space-y-4">
@@ -112,16 +88,16 @@ export default function ResidencialPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-volcanic/10 bg-volcanic/10">
               {[
                 { stat: "0 ppm", label: "Pureza del agua" },
                 { stat: "+50%", label: "Brillo más duradero" },
                 { stat: "100%", label: "Satisfacción garantizada" },
                 { stat: "0€", label: "Desplazamiento" },
               ].map((s) => (
-                <div key={s.label} className="bg-white rounded-2xl p-6 border border-smoke text-center">
-                  <div className="font-display text-4xl font-bold text-gold mb-1">{s.stat}</div>
-                  <p className="text-xs text-volcanic/50 uppercase tracking-wide font-medium">{s.label}</p>
+                <div key={s.label} className="bg-pearl p-6 text-center">
+                  <div className="mb-1 font-display text-4xl font-semibold text-volcanic">{s.stat}</div>
+                  <p className="text-[11px] font-medium uppercase tracking-wider text-volcanic/45">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -130,15 +106,15 @@ export default function ResidencialPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-24 bg-white">
+      <section className="cc-paper-bg-alt cc-seam-top py-24">
         <div className="max-w-4xl mx-auto px-5 lg:px-8 text-center">
-          <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-3">
-            Precios claros
-          </p>
-          <h2 className="font-display text-4xl font-bold text-volcanic mb-4">
+          <div className="flex flex-col items-center">
+            <SectionEyebrow index="R—03" label="Precios claros" align="center" />
+          </div>
+          <h2 className="mt-6 mb-4 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-5xl">
             Sin sorpresas, sin letra pequeña
           </h2>
-          <p className="text-volcanic/60 mb-12">Precio fijo por ventana. Lo que ves es lo que pagas.</p>
+          <p className="mb-12 text-volcanic/60">Precio fijo por ventana. Lo que ves es lo que pagas.</p>
 
           <div className="grid sm:grid-cols-3 gap-6 mb-12">
             {[
@@ -146,9 +122,9 @@ export default function ResidencialPage() {
               { type: "Ventana mediana", price: "5€", note: "Hasta 120×150 cm" },
               { type: "Balconera / Grande", price: "6–8€", note: "Más de 150 cm" },
             ].map((p) => (
-              <div key={p.type} className="bg-pearl border border-smoke rounded-2xl p-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-ocean mb-2">{p.type}</p>
-                <div className="font-display text-4xl font-bold text-volcanic mb-1">{p.price}</div>
+              <div key={p.type} className="cc-card cc-topline overflow-hidden rounded-[20px] p-6">
+                <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-ocean">{p.type}</p>
+                <div className="mb-1 font-display text-4xl font-semibold text-volcanic">{p.price}</div>
                 <p className="text-xs text-volcanic/40">{p.note}</p>
               </div>
             ))}
@@ -172,7 +148,7 @@ export default function ResidencialPage() {
             href={`${WA_LINK}?text=${WA_MSG_RESIDENCIAL}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-gold inline-flex items-center gap-2 text-white font-bold px-8 py-4 rounded-full text-lg shadow-xl"
+            className="btn-gold inline-flex items-center gap-2 font-bold px-8 py-4 rounded-full text-lg shadow-xl"
           >
             <WhatsAppIcon className="w-5 h-5" />
             Solicitar presupuesto gratuito
@@ -182,28 +158,30 @@ export default function ResidencialPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-pearl">
-        <div className="max-w-3xl mx-auto px-5 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl font-bold text-volcanic">
-              Preguntas <span className="italic text-ocean">frecuentes</span>
+      <section className="cc-paper-bg cc-seam-top relative overflow-hidden py-24">
+        <div className="cc-grid absolute inset-0" aria-hidden="true" />
+        <div className="relative z-10 mx-auto max-w-3xl px-5 lg:px-8">
+          <div className="mb-12 flex flex-col items-center text-center">
+            <SectionEyebrow index="R—04" label="Preguntas frecuentes" align="center" />
+            <h2 className="mt-6 font-display text-4xl font-semibold tracking-tight text-volcanic lg:text-5xl">
+              Resolvemos tus <span className="italic text-ocean">dudas</span>
             </h2>
           </div>
-          <div className="space-y-4">
+          <div className="overflow-hidden rounded-2xl border border-volcanic/10 bg-white/80 backdrop-blur-sm">
             {[
               { q: "¿Necesito estar en casa?", a: "No. Solo necesitamos acceso al exterior de la vivienda. Te avisamos cuando llegamos y cuando terminamos." },
               { q: "¿Cuánto tiempo tarda la limpieza?", a: "Depende del número de ventanas. Una vivienda media con 10-15 ventanas lleva entre 1 y 2 horas." },
               { q: "¿Limpiáis también por dentro?", a: "Sí. Limpiamos interior y exterior. Solo necesitamos acceso a las habitaciones." },
               { q: "¿Qué pasa si llueve después de la limpieza?", a: "Si llueve en los 3 días posteriores al servicio, podemos volver para repetir la limpieza. Ten en cuenta que esta repetición tendrá un coste adicional." },
             ].map((item) => (
-              <details key={item.q} className="bg-white border border-smoke rounded-2xl overflow-hidden group">
-                <summary className="px-6 py-5 font-semibold text-volcanic cursor-pointer hover:text-ocean transition-colors list-none flex items-center justify-between">
+              <details key={item.q} className="group border-b border-volcanic/8 last:border-0">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5 font-semibold text-volcanic transition-colors hover:text-ocean">
                   {item.q}
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 shrink-0 text-gold group-open:rotate-180 transition-transform" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 shrink-0 text-gold transition-transform group-open:rotate-180" aria-hidden="true">
                     <path d="M19 9l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </summary>
-                <p className="px-6 pb-5 text-volcanic/60 text-sm leading-relaxed">{item.a}</p>
+                <p className="px-6 pb-5 text-sm leading-relaxed text-volcanic/60">{item.a}</p>
               </details>
             ))}
           </div>

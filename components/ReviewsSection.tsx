@@ -66,7 +66,7 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
         &ldquo;{review.text.text}&rdquo;
       </p>
       <div className="flex items-center gap-2.5 pt-2 border-t border-smoke">
-        <div className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-white font-bold text-xs flex-shrink-0">
+        <div className="w-7 h-7 rounded-full bg-gold flex items-center justify-center text-volcanic font-bold text-xs flex-shrink-0">
           {initial}
         </div>
         <div>
@@ -125,10 +125,10 @@ export function ReviewsSection() {
   if (!data?.reviews?.length) return null;
 
   return (
-    <div className="pt-16 pb-10 bg-white">
+    <div className="relative z-10 pt-20 pb-10">
       {/* Header */}
       <div className="max-w-xl mx-auto px-5 lg:px-8 text-center mb-10">
-        <div className="inline-flex items-center gap-2.5 border border-gold/50 rounded-full px-4 py-2 mb-5">
+        <div className="inline-flex items-center gap-2.5 rounded-full border border-gold/40 bg-white/70 px-4 py-2 mb-5 backdrop-blur-sm">
           <div className="flex gap-0.5">
             {[1, 2, 3, 4, 5].map((i) => (
               <svg key={i} viewBox="0 0 20 20" className="w-4 h-4 text-gold" fill="currentColor">
@@ -140,7 +140,7 @@ export function ReviewsSection() {
           <span className="text-volcanic/40">·</span>
           <span className="text-volcanic text-sm">{data.userRatingCount} reseñas en Google</span>
         </div>
-        <h2 className="font-display text-3xl font-bold text-volcanic mb-2">
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-volcanic mb-2">
           Lo que dicen nuestros clientes
         </h2>
         <p className="text-volcanic/70 text-sm">Reseñas verificadas de Google</p>

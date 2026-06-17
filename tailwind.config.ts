@@ -18,9 +18,10 @@ const config: Config = {
         smoke: "#f0ede8",
       },
       fontFamily: {
-        display: ["var(--font-fraunces)", "Georgia", "serif"],
-        body: ["var(--font-outfit)", "system-ui", "sans-serif"],
-        bodoni: ["var(--font-bodoni)", "Georgia", "serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        // logo shares the display serif, set heavier per-use
+        wordmark: ["var(--font-display)", "Georgia", "serif"],
       },
       animation: {
         "fade-up": "fadeUp 0.7s ease forwards",
